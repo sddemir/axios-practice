@@ -18,6 +18,16 @@ const moreResults= (shows)=>{
 }
 // trying to print out a dad joke
 const button=document.querySelector('#joke');
-button.addEventListener('click', async function(){
-    const jokeAPI= await axios.get(`https://icanhazdadjoke.com/`);
-})
+
+const APIsrc = async () => {
+    const conf = { headers: { Accept: 'text/plain' } };
+    const jokeAPI = await axios.get(`https://icanhazdadjoke.com/`);
+    getJoke();
+}
+const getJoke= ()=>{
+    const jokeText = APIsrc()
+    const joke= document.createElement('LI');
+    joke.append(jokeAPI);
+    document.body.append(joke);
+}
+button.addEventListener('click', getJoke);
